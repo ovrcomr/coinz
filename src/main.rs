@@ -11,24 +11,27 @@ fn main() {
             .expect("Failed to read input");
         let input = input.trim();
 
-        if input == "/test" {
-            println!("Running...");
-        }
-
-        if input == "/new coin" {
-            let new_coin: Coin = Coin::new();
-            coin_list.push(new_coin);
-        }
-
-        if input == "/coin list" {
-            for coin in &coin_list {
-                println!("{} : {}", coin.name, coin.price);
+        match input {
+            "/test" => {
+                println!("Running...");
             }
-        }
-
-        if input == "/exit" {
-            println!("Exiting...");
-            break;
+            "/new coin" => {
+                let new_coin: Coin = Coin::new();
+                coin_list.push(new_coin);
+            }
+            "/coin list" => {
+                for coin in &coin_list {
+                    println!("{} : {}", coin.name, coin.price);
+                }
+            }
+            "/exit" => {
+                println!("Exiting...");
+                break;
+            }
+            _ => {
+                // This is the "catch-all" case if no match is found
+                println!("Unknown command");
+            }
         }
     }
 }
